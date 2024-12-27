@@ -1,50 +1,72 @@
-# React + TypeScript + Vite
+# InkThink - Multiplayer Drawing & Guessing Game
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A real-time multiplayer drawing and guessing game built with React, TypeScript, and TailwindCSS.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Real-time drawing canvas with multiple tools:
 
-## Expanding the ESLint configuration
+  - Different brush sizes and colors
+  - Eraser tool
+  - Undo/Redo functionality
+  - Clear canvas option
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- Player Management:
 
-- Configure the top-level `parserOptions` property like this:
+  - Player rankings
+  - Points system
+  - Individual player boards
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+- Chat System:
+
+  - Real-time messaging
+  - Player guesses
+  - Automated game announcements
+
+- Game Controls:
+  - Timer system
+  - Round management
+  - Word selection
+
+## Tech Stack
+
+- React 18
+- TypeScript
+- TailwindCSS
+- React Router DOM
+- Vite
+
+
+## Getting Started
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/yourusername/inkthink.git
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+2. Install dependencies
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+```bash
+cd inkthink
+npm install
 ```
+
+3. Start the development server:
+
+```bash
+npm run dev
+```
+
+## Development
+- npm run dev - Start development server
+- npm run build - Build for production
+
+
+This README focuses on:
+
+- Actual implemented features
+- Clear project structure
+- Technical details
+- Getting started guide
+- Development commands
