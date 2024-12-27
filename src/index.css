@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-image: url("../public/laptop_screen_background.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.clock {
+  background: url("../public/gifs/settings.gif") no-repeat center center;
+  z-index: 3;
+}
+
+@font-face {
+  font-family: "arcadeclassic";
+  src: url("../public/fonts/ARCADECLASSIC.TTF") format("truetype");
+}
+
+@font-face {
+  font-family: "pencil";
+  src: url("../public/fonts/Pencilant Script.ttf") format("truetype");
+}
