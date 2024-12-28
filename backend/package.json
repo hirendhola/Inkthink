@@ -1,0 +1,31 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "ts-node-dev src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.x",
+    "@aws-sdk/client-s3": "^3.x",
+    "@aws-sdk/lib-dynamodb": "^3.x",
+    "cors": "^2.x",
+    "dotenv": "^16.x",
+    "express": "^5.0.1",
+    "uuid": "^11.x",
+    "ws": "^8.x"
+  },
+  "devDependencies": {
+    "@types/express": "^5.x",
+    "@types/node": "^22.x",
+    "@types/ws": "^8.x",
+    "ts-node": "^10.x",
+    "typescript": "^5.x"
+  }
+}
