@@ -15,7 +15,7 @@ const ColorfulLogo = ({ className, size }: prop) => {
   MainClass = clsx(MainClass, size);
 
   return (
-    <div className="flex items-center justify-center gap-1 font-pencil">
+    <div className="flex items-center justify-center gap-1 font-inter">
       <h1 className={MainClass}>
         <span
           className="text-red-500 hover:scale-110 transition-transform drop-shadow	"

@@ -36,7 +36,7 @@ export default function Typeface({
             <div className="">
               {activeIndexes.includes(index) && (
                 <>
-                  <span className="font-pencil sm:font-semibold font-bold inset-0 flex items-center justify-center text-black text-center ">
+                  <span className="font-inter sm:font-semibold font-bold inset-0 flex items-center justify-center text-black text-center ">
                     {char}
                   </span>
                 </>

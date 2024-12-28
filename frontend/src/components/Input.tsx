@@ -5,7 +5,7 @@ interface InputProps {
 const Input = ({ placeholder }: InputProps) => {
   return (
     <input
-      className="border-2 border-gray-300 p-3 font-pencil text-xl rounded-lg text-black outline-none border-none focus:ring-0 focus:outline-none shadow-lg"
+      className="border-2 border-gray-300 p-3 text-xl rounded-lg text-black outline-none border-none focus:ring-0 focus:outline-none shadow-lg"
       placeholder={placeholder}
     />
   );

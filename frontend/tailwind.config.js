@@ -3,13 +3,12 @@ export default {
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
-    "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {
       fontFamily: {
-        'pencil': ['"Pencilant Script"', 'sans-serif'],
         'arcadeclassic': ['arcadeclassic', 'sans-serif'],
+        'inter': ['Inter', 'sans-serif'],
       },
     },
   },

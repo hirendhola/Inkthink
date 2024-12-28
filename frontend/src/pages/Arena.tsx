@@ -125,7 +125,7 @@ const players: playerData[] = [
 
 const Arena = () => {
   return (
-    <main className="w-screen h-screen font-pencil sm:pb-4 sm:pl-20 sm:pr-20 p-0 flex flex-col select-none ">
+    <main className="w-screen h-screen  sm:pb-4 sm:pl-20 sm:pr-20 p-0 flex flex-col select-none ">
       {" "}
       {/* select-none */}
       <div className="sm:flex items-left h-fit pt-5 mb-2 hidden " id="logo">

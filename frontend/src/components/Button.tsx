@@ -10,7 +10,7 @@ interface InputProps {
 
 const Button = ({ children, onClick, className, style }: InputProps) => {
   const buttonClass = clsx(
-    "px-4 py-2 w-full rounded-lg transition:translate font-pencil",
+    "px-4 py-2 w-full rounded-lg transition:translate font-arcadeclassic",
     className
   );
 

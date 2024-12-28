@@ -3,6 +3,7 @@ interface PlayerBoardProps {
   playerName: string;
   PlayerRank: number;
   PlayerPoint: number;
+  turn?: boolean;
 }
 
 const PlayerBoard = ({
@@ -10,6 +11,7 @@ const PlayerBoard = ({
   playerName,
   PlayerRank,
   PlayerPoint,
+  turn,
 }: PlayerBoardProps) => {
   // playerImage = `https://avatar.iran.liara.run/public/boy`;
 
