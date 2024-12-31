@@ -5,9 +5,13 @@ interface ChatBoardProps {
 }
 
 interface messagesData {
-  name: string;
-  message: string;
-  color: string;
+  messageId: string;
+  roomId: string;
+  playerId: string;
+  content: string;
+  type: string;
+  timestamp: number;
+  playerName: string;
 }
 
 const ChatBoard = ({ messages }: ChatBoardProps) => {
@@ -28,10 +32,10 @@ const ChatBoard = ({ messages }: ChatBoardProps) => {
         <div className="space-y-2 p-2">
           {messages.map((message, index) => (
             <div key={index} className={`w-full bg-slate-200 p-3 rounded-lg`}>
-              <p className={`text-sm font-medium text-${message.color}-500`}>
-                {message.name}
+              <p className={`text-sm font-medium text-green-500`}>
+                {message.playerName}
               </p>
-              <p className="text-gray-800 mt-1">{message.message}</p>
+              <p className="text-gray-800 mt-1">{message.content}</p>
             </div>
           ))}
         </div>
@@ -56,7 +60,6 @@ const ChatBoard = ({ messages }: ChatBoardProps) => {
           background: #666;
         }
       `}</style>
-      
     </div>
   );
 };

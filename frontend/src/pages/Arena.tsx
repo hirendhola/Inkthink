@@ -1,165 +1,97 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
+import {  useParams } from "react-router-dom";
+import { useEffect } from "react";
+import { useWebSocket } from "../context/WebSocketContext";
 import Bar from "../components/Bar";
 import ChatBoard from "../components/ChatBoard";
 import ChatInput from "../components/ChatInput";
 import ColorfulLogo from "../components/ColorfulLogo";
 import MainCanvas from "../components/MainCanvas";
 import PlayerBoard from "../components/PlayerBoard";
-
-interface playerData {
-  playerImage: string;
-  playerName: string;
-  PlayerRank: number;
-  PlayerPoint: number;
+interface JoinRoom {
+  type: string;
+  roomId: string;
+  player: {
+    name: string;
+    avatarUrl: string | null;
+    playerId: string;
+    score: number;
+  };
 }
-
-interface messagesData {
-  name: string;
-  message: string;
-  color: string;
-}
-
-const messages: messagesData[] = [
-  {
-    name: "Player 1",
-    message: "Hello",
-    color: "red",
-  },
-  {
-    name: "Player 2",
-    message: "Hi",
-    color: "blue",
-  },
-  {
-    name: "Player 3",
-    message: "Hey",
-    color: "green",
-  },
-  {
-    name: "Player 4",
-    message: "Hola",
-    color: "yellow",
-  },
-  {
-    name: "Player 1",
-    message: "Hello",
-    color: "red",
-  },
-  {
-    name: "Player 2",
-    message: "Hi",
-    color: "blue",
-  },
-  {
-    name: "Player 3",
-    message: "Hey",
-    color: "green",
-  },
-  {
-    name: "Player 4",
-    message: "Hola",
-    color: "yellow",
-  },
-  {
-    name: "Player 3",
-    message: "Hey",
-    color: "green",
-  },
-  {
-    name: "Player 4",
-    message: "Hola",
-    color: "yellow",
-  },
-  {
-    name: "Player 3",
-    message: "Hey",
-    color: "green",
-  },
-  {
-    name: "Player 4",
-    message: "Hola",
-    color: "yellow",
-  },
-  {
-    name: "Player 4",
-    message: "Hola",
-    color: "yellow",
-  },
-  {
-    name: "Player 4",
-    message: "Hola",
-    color: "yellow",
-  },
-  {
-    name: "Player 4",
-    message: "Hola",
-    color: "yellow",
-  },
-];
-
-const players: playerData[] = [
-  {
-    playerImage: "https://avatar.iran.liara.run/public/boy",
-    playerName: "Player 1",
-    PlayerRank: 1,
-    PlayerPoint: 100,
-  },
-  {
-    playerImage: "https://avatar.iran.liara.run/public/boy",
-    playerName: "Player 2",
-    PlayerRank: 2,
-    PlayerPoint: 90,
-  },
-  {
-    playerImage: "https://avatar.iran.liara.run/public/boy",
-    playerName: "Player 3",
-    PlayerRank: 3,
-    PlayerPoint: 80,
-  },
-  {
-    playerImage: "https://avatar.iran.liara.run/public/boy",
-    playerName: "Player 4",
-    PlayerRank: 4,
-    PlayerPoint: 70,
-  },
-];
 
 const Arena = () => {
+  const { roomId } = useParams<{ roomId: string }>();
+  const name: string = localStorage.getItem("INKTHINK-name") || "ano";
+
+  const { messages, draw, players, sendMessage, connectWebSocket } =
+    useWebSocket();
+
+  const joinRoom: JoinRoom = {
+    type: "joinRoom",
+    roomId: roomId!,
+    player: {
+      name: name,
+      avatarUrl: null,
+      playerId: "1",
+      score: 0,
+    },
+  };
+  useEffect(() => {
+    if (joinRoom) {
+      connectWebSocket(joinRoom);
+    }
+  }, [connectWebSocket, roomId]);
+
+  const handleSendMessage = (message: string) => {
+    sendMessage({
+      type: "chat",
+      message: message,
+    });
+  };
+
+  const handleDraw = (drawData: any) => {
+    sendMessage({
+      type: "draw",
+      data: drawData,
+    });
+  };
+
   return (
-    <main className="w-screen h-screen  sm:pb-4 sm:pl-20 sm:pr-20 p-0 flex flex-col select-none ">
-      {" "}
-      {/* select-none */}
-      <div className="sm:flex items-left h-fit pt-5 mb-2 hidden " id="logo">
+    <main className="w-screen h-screen sm:pb-4 sm:pl-20 sm:pr-20 p-0 flex flex-col select-none">
+      <div className="sm:flex items-left h-fit pt-5 mb-2 hidden" id="logo">
         <ColorfulLogo className="text-4xl" />
       </div>
-      {/* Main Section */}
       <section className="w-full h-full m-0 sm:rounded-2xl flex flex-col overflow-hidden">
         <Bar />
         <section
-          className="h-[calc(100%-3.5rem)] w-full pb-2 pt-2 z-2 text-white grid sm:grid-cols-3 sm:grid-col-[1fr 3fr 1fr] grid-cols-1 gap-2"
+          className="h-[calc(100%-3.5rem)] w-full pb-2 pt-2 z-2 text-white grid sm:grid-cols-3 grid-cols-1 gap-2"
           style={{ gridTemplateColumns: "1fr 3fr 1fr" }}
         >
-          {/* Player Board */}
           <div className="flex flex-col gap-2" style={{ minWidth: 0 }}>
-            {players.map((player, index) => (
+            {players.map((player) => (
               <PlayerBoard
-                key={index}
-                playerImage={player.playerImage}
-                playerName={player.playerName}
-                PlayerRank={player.PlayerRank}
-                PlayerPoint={player.PlayerPoint}
+                key={player.id}
+                playerImage="dknfjkn"
+                playerName={player.name}
+                PlayerRank={1}
+                PlayerPoint={100}
+                isDrawing={false} // You'll need to implement logic to determine who's drawing
               />
             ))}
           </div>
 
-          {/* Main Canvas */}
           <div className="flex flex-col grow" style={{ minWidth: 0 }}>
-            <MainCanvas />
+            <MainCanvas onDraw={handleDraw} drawData={draw} />
           </div>
 
-          {/* Chat Section */}
           <div className="flex flex-col gap-2 grow" style={{ minWidth: 0 }}>
             <ChatBoard messages={messages} />
-            <ChatInput />
+            <ChatInput
+              onSendMessage={handleSendMessage}
+              isDrawer={true} // You'll need to implement logic to determine if current user is drawer
+            />
           </div>
         </section>
       </section>

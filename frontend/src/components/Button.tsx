@@ -6,16 +6,29 @@ interface InputProps {
   onClick?: () => void;
   className?: string;
   style?: React.CSSProperties;
+  onKeyDown?: (e: React.KeyboardEvent<HTMLButtonElement>) => void;
 }
 
-const Button = ({ children, onClick, className, style }: InputProps) => {
+const Button = ({
+  children,
+  onClick,
+  className,
+  style,
+  onKeyDown,
+}: InputProps) => {
   const buttonClass = clsx(
     "px-4 py-2 w-full rounded-lg transition:translate font-arcadeclassic",
     className
   );
 
   return (
-    <button onClick={onClick} className={buttonClass} style={style} type="button">
+    <button
+      onClick={onClick}
+      onKeyDown={onKeyDown}
+      className={buttonClass}
+      style={style}
+      type="button"
+    >
       {children}
     </button>
   );

@@ -23,16 +23,15 @@ export default function Typeface({
           <div className="h-full">
             <div className="m-0 p-0">
               <div
-                key={index}
                 style={{
                   width: `${boxSize.width}px`,
                   height: `${boxSize.height}px`,
                 }}
-                className={`m-0 p-0 rounded-lg
-            ${activeIndexes.includes(index) ? "bg-transparent" : "bg-black"} 
-          `}
-              ></div>
-            </div>
+                className={`m-0 p-0 rounded-lg ${
+                  activeIndexes.includes(index) ? "bg-transparent" : "bg-black"
+                }`}
+              />
+            </div>{" "}
             <div className="">
               {activeIndexes.includes(index) && (
                 <>

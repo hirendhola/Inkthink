@@ -1,7 +1,13 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useRef, useState, useEffect } from "react";
 import { Eraser, Trash2, Redo, Undo } from "lucide-react";
 
-const MainCanvas = () => {
+interface MainCanvasProps {
+  onDraw: (data: any) => void;
+  drawData: any;
+}
+
+const MainCanvas = ({ onDraw, drawData }: MainCanvasProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [isDrawing, setIsDrawing] = useState(false);
@@ -46,6 +52,21 @@ const MainCanvas = () => {
   }, [brushColor, brushSize, isErasing]);
 
   useEffect(() => {
+    const canvas = canvasRef.current;
+    if (canvas) {
+      const context = canvas.getContext("2d");
+      if (context) {
+        context.strokeStyle = drawData?.color;
+        context.lineWidth = drawData?.size;
+        context.beginPath();
+        context.moveTo(drawData?.startX, drawData?.startY);
+        context.lineTo(drawData?.endX, drawData?.endY);
+        context.stroke();
+      }
+    }
+  }, [drawData]);
+
+  useEffect(() => {
     setIsErasing(false);
   }, [brushColor]);
 
@@ -71,6 +92,16 @@ const MainCanvas = () => {
         context.stroke();
       }
     }
+    const data = {
+      type: "draw",
+      x: event.nativeEvent.offsetX,
+      y: event.nativeEvent.offsetY,
+      brushColor,
+      brushSize,
+      isErasing,
+    };
+
+    onDraw(data);
   };
 
   const stopDrawing = () => {
