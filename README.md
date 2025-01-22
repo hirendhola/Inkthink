@@ -42,7 +42,7 @@ A real-time multiplayer drawing and guessing game built with React, TypeScript, 
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/inkthink.git
+git clone https://github.com/hirendhola/inkthink.git
 ```
 
 2. Install dependencies
